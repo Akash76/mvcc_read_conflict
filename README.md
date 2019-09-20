@@ -1,4 +1,4 @@
-# mvcc_read_conflict, Resolving MVCC_READ_CONFLICT issue
+# Resolving MVCC_READ_CONFLICT issue
 Hyperledger fabric is one of the frameworks to develop enterprise blockchain applications. It became more popular in recent times and many companies started implementing this framework to develop applications. One can start working on hyperledger by following fabric [docs](https://hyperledger-fabric.readthedocs.io/en/release-1.4/).
 
  Here, in this post i want to share my experience with MVCC_READ_CONFLICT issue.
