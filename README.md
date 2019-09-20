@@ -8,6 +8,7 @@ Hyperledger fabric is one of the frameworks to develop enterprise blockchain app
 Once i gave myself a task to transfer a huge data from one database to blockchain database. I initially converted all the data from source database to a JSON object and it is a mysql database. So i had lot of tables in it. Then i extracted that part of data that i want to transfer. I am using v1.4.3 of fabric and that has provided a js file using 'fabric-network' module to submit transactions. Compared to earlier versions of same code, this code made things much simpler. I made an array of arrays where each array is a transaction to be submitted. As the data is huge, i have more transactions to submit. The js script returns a promise after successful submission of transaction. So i thought of using Promise.all(). And it is there i first experienced MVCC_READ_CONFLICT. Below is the code i used. 
 
 ```javascript
+    // part of submitting transactions
     var promises = [invoke(['func1','arg1']), invoke(['func2','arg2']), ...so on]
     Promise.all(promises).then(function(data) {
         console.log(data)
@@ -39,6 +40,7 @@ Orderer: &OrdererDefaults
 Now here is the solution i made use of. I have executed a loop and resolved a promise after submitting a transaction and displaying the response. By this i have transfered all the data sequentially.
 
 ```javascript
+    // using Promise for sequential submission
     var promises = [invoke(['func1','arg1']), invoke(['func2','arg2']), ...so on]
     (function loop(i) {
         if (i < promises.length) new Promise((resolve, reject) => {
